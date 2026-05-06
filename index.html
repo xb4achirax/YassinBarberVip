@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050505">
+    <title>Yassine Janati | Barber</title>
+    <meta name="description" content="Yassine Janati — Professional Barber & Stylist. Book your appointment and follow on socials.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== LOADING SCREEN ========== -->
+    <div class="loader" id="loader">
+        <div class="loader-bg-glow"></div>
+        <div class="loader-sparks">
+            <span class="spark" style="--i:0"></span>
+            <span class="spark" style="--i:1"></span>
+            <span class="spark" style="--i:2"></span>
+            <span class="spark" style="--i:3"></span>
+            <span class="spark" style="--i:4"></span>
+            <span class="spark" style="--i:5"></span>
+            <span class="spark" style="--i:6"></span>
+            <span class="spark" style="--i:7"></span>
+            <span class="spark" style="--i:8"></span>
+            <span class="spark" style="--i:9"></span>
+            <span class="spark" style="--i:10"></span>
+            <span class="spark" style="--i:11"></span>
+        </div>
+        <div class="loader-orbit loader-orbit-1"></div>
+        <div class="loader-orbit loader-orbit-2"></div>
+        <div class="loader-orbit loader-orbit-3"></div>
+        <div class="loader-scissors-wrap">
+            <svg class="loader-scissors" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="strongGlow">
+                        <feGaussianBlur stdDeviation="6" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <g class="blade blade-left" filter="url(#glow)">
+                    <path d="M100,100 C92,70 95,30 95,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9"/>
+                    <path d="M100,100 L88,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="82" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5"/>
+                    <path d="M72,152 L58,162" stroke="#e8d48b" stroke-width="3.5" stroke-linecap="round"/>
+                </g>
+                <g class="blade blade-right" filter="url(#glow)">
+                    <path d="M100,100 C108,70 105,30 105,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9"/>
+                    <path d="M100,100 L112,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="118" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5"/>
+                </g>
+                <circle cx="100" cy="100" r="4.5" fill="#fff" filter="url(#strongGlow)"/>
+                <circle cx="100" cy="100" r="2.5" fill="#111"/>
+            </svg>
+        </div>
+        <div class="loader-text">
+            <span class="loader-name-script">Yassine</span>
+            <span class="loader-name-bold">JANATI</span>
+        </div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="loader-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- ========== MAIN PAGE ========== -->
+    <div class="page-content" id="page-content">
+
+        <canvas id="particles-canvas"></canvas>
+        <div class="ornament ornament-tl" aria-hidden="true">&#10053;</div>
+        <div class="ornament ornament-tr" aria-hidden="true">&#10053;</div>
+
+        <!-- ── PROFILE ── -->
+        <main class="container">
+            <section class="profile" id="profile-section">
+                <div class="profile-image-wrapper">
+                    <div class="profile-ring"></div>
+                    <img
+                        src="assets/yassine.jpg"
+                        alt="Yassine Janati – Professional Barber"
+                        class="profile-image"
+                        id="profile-image"
+                    >
+                    <div class="fire-glow"></div>
+                </div>
+
+                <div class="profile-info">
+                    <p class="profile-subtitle">The Art of</p>
+                    <h1 class="profile-name">
+                        <span class="name-script">Yassine</span>
+                        <span class="name-bold">JANATI</span>
+                    </h1>
+                    <div class="divider"><span class="divider-ornament">✂</span></div>
+                    <p class="profile-tagline">Professional Barber &amp; Stylist</p>
+                    <p class="profile-location">
+                        <i class="fas fa-map-marker-alt"></i> Morocco
+                    </p>
+                </div>
+            </section>
+
+            <section class="links" id="links-section">
+
+                <a href="https://www.instagram.com/j_yassine_/" target="_blank" rel="noopener noreferrer" class="link-card" id="link-instagram">
+                    <div class="link-icon instagram-gradient"><i class="fab fa-instagram"></i></div>
+                    <div class="link-content">
+                        <span class="link-title">Instagram</span>
+                        <span class="link-desc">@j_yassine_</span>
+                    </div>
+                    <i class="fas fa-chevron-right link-arrow"></i>
+                </a>
+
+                <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="link-card" id="link-whatsapp">
+                    <div class="link-icon whatsapp-gradient"><i class="fab fa-whatsapp"></i></div>
+                    <div class="link-content">
+                        <span class="link-title">WhatsApp</span>
+                        <span class="link-desc">Book an Appointment</span>
+                    </div>
+                    <i class="fas fa-chevron-right link-arrow"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@j_yassine_" target="_blank" rel="noopener noreferrer" class="link-card" id="link-tiktok">
+                    <div class="link-icon tiktok-gradient"><i class="fab fa-tiktok"></i></div>
+                    <div class="link-content">
+                        <span class="link-title">TikTok</span>
+                        <span class="link-desc">Watch Transformations</span>
+                    </div>
+                    <i class="fas fa-chevron-right link-arrow"></i>
+                </a>
+
+                <a href="https://www.snapchat.com/add/j_yassine_" target="_blank" rel="noopener noreferrer" class="link-card" id="link-snapchat">
+                    <div class="link-icon snapchat-gradient"><i class="fab fa-snapchat-ghost"></i></div>
+                    <div class="link-content">
+                        <span class="link-title">Snapchat</span>
+                        <span class="link-desc">Behind the Scenes</span>
+                    </div>
+                    <i class="fas fa-chevron-right link-arrow"></i>
+                </a>
+
+                <a href="#" class="link-card" id="link-location">
+                    <div class="link-icon location-gradient"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="link-content">
+                        <span class="link-title">Find Us</span>
+                        <span class="link-desc">Visit the Barbershop</span>
+                    </div>
+                    <i class="fas fa-chevron-right link-arrow"></i>
+                </a>
+
+            </section>
+
+            <footer class="footer" id="footer">
+                <div class="footer-ornament">
+                    <span>★</span><span>BARBER</span>
+                    <span class="footer-scissors">✂</span>
+                    <span>SHOP</span><span>★</span>
+                </div>
+                <p class="footer-copy">&copy; 2026 Yassine Janati. All Rights Reserved.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
