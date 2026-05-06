@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -8,14 +9,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#050505">
     <title>Yassine Janati | Barber</title>
-    <meta name="description" content="Yassine Janati — Professional Barber & Stylist. Book your appointment and follow on socials.">
+    <meta name="description"
+        content="Yassine Janati — Professional Barber & Stylist. Book your appointment and follow on socials.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- ========== LOADING SCREEN ========== -->
@@ -42,27 +47,36 @@
             <svg class="loader-scissors" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                     </filter>
                     <filter id="strongGlow">
-                        <feGaussianBlur stdDeviation="6" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        <feGaussianBlur stdDeviation="6" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                     </filter>
                 </defs>
                 <g class="blade blade-left" filter="url(#glow)">
-                    <path d="M100,100 C92,70 95,30 95,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9"/>
-                    <path d="M100,100 L88,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="82" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5"/>
-                    <path d="M72,152 L58,162" stroke="#e8d48b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M100,100 C92,70 95,30 95,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9" />
+                    <path d="M100,100 L88,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="82" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5" />
+                    <path d="M72,152 L58,162" stroke="#e8d48b" stroke-width="3.5" stroke-linecap="round" />
                 </g>
                 <g class="blade blade-right" filter="url(#glow)">
-                    <path d="M100,100 C108,70 105,30 105,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9"/>
-                    <path d="M100,100 L112,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="118" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5"/>
+                    <path d="M100,100 C108,70 105,30 105,20 C100,25 100,70 100,100 Z" fill="#e8d48b" opacity="0.9" />
+                    <path d="M100,100 L112,130" stroke="#e8d48b" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="118" cy="144" r="13" fill="none" stroke="#e8d48b" stroke-width="4.5" />
                 </g>
-                <circle cx="100" cy="100" r="4.5" fill="#fff" filter="url(#strongGlow)"/>
-                <circle cx="100" cy="100" r="2.5" fill="#111"/>
+                <circle cx="100" cy="100" r="4.5" fill="#fff" filter="url(#strongGlow)" />
+                <circle cx="100" cy="100" r="2.5" fill="#111" />
             </svg>
         </div>
         <div class="loader-text">
@@ -86,12 +100,8 @@
             <section class="profile" id="profile-section">
                 <div class="profile-image-wrapper">
                     <div class="profile-ring"></div>
-                    <img
-                        src="assets/yassine.jpg"
-                        alt="Yassine Janati – Professional Barber"
-                        class="profile-image"
-                        id="profile-image"
-                    >
+                    <img src="assets/yassine.jpg" alt="Yassine Janati – Professional Barber" class="profile-image"
+                        id="profile-image">
                     <div class="fire-glow"></div>
                 </div>
 
@@ -104,14 +114,15 @@
                     <div class="divider"><span class="divider-ornament">✂</span></div>
                     <p class="profile-tagline">Professional Barber &amp; Stylist</p>
                     <p class="profile-location">
-                        <i class="fas fa-map-marker-alt"></i> Morocco
+                        <i class="fas fa-map-marker-alt"></i> Fès, Morocco
                     </p>
                 </div>
             </section>
 
             <section class="links" id="links-section">
 
-                <a href="https://www.instagram.com/j_yassine_/" target="_blank" rel="noopener noreferrer" class="link-card" id="link-instagram">
+                <a href="https://www.instagram.com/j_yassine_/" target="_blank" rel="noopener noreferrer"
+                    class="link-card" id="link-instagram">
                     <div class="link-icon instagram-gradient"><i class="fab fa-instagram"></i></div>
                     <div class="link-content">
                         <span class="link-title">Instagram</span>
@@ -120,34 +131,19 @@
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
 
-                <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="link-card" id="link-whatsapp">
+                <a href="https://wa.me/212704894384" target="_blank" rel="noopener noreferrer" class="link-card"
+                    id="link-whatsapp">
                     <div class="link-icon whatsapp-gradient"><i class="fab fa-whatsapp"></i></div>
                     <div class="link-content">
                         <span class="link-title">WhatsApp</span>
-                        <span class="link-desc">Book an Appointment</span>
+                        <span class="link-desc">+212 704-894384</span>
                     </div>
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
 
-                <a href="https://www.tiktok.com/@j_yassine_" target="_blank" rel="noopener noreferrer" class="link-card" id="link-tiktok">
-                    <div class="link-icon tiktok-gradient"><i class="fab fa-tiktok"></i></div>
-                    <div class="link-content">
-                        <span class="link-title">TikTok</span>
-                        <span class="link-desc">Watch Transformations</span>
-                    </div>
-                    <i class="fas fa-chevron-right link-arrow"></i>
-                </a>
 
-                <a href="https://www.snapchat.com/add/j_yassine_" target="_blank" rel="noopener noreferrer" class="link-card" id="link-snapchat">
-                    <div class="link-icon snapchat-gradient"><i class="fab fa-snapchat-ghost"></i></div>
-                    <div class="link-content">
-                        <span class="link-title">Snapchat</span>
-                        <span class="link-desc">Behind the Scenes</span>
-                    </div>
-                    <i class="fas fa-chevron-right link-arrow"></i>
-                </a>
-
-                <a href="#" class="link-card" id="link-location">
+                <a href="https://maps.app.goo.gl/jppadeekb6LPcPAy5" target="_blank" rel="noopener noreferrer"
+                    class="link-card" id="link-location">
                     <div class="link-icon location-gradient"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="link-content">
                         <span class="link-title">Find Us</span>
@@ -172,4 +168,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
