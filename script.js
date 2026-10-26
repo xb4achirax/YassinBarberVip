@@ -1,5 +1,5 @@
 // ===================================
-// YASSINE JANATI — LINK IN BIO
+// JANATI BARBER VIP — LINK IN BIO
 // Mobile-First Scripts
 // ===================================
 
@@ -82,7 +82,7 @@ function initParticles() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fillStyle = this.golden
-                ? `rgba(201,168,76,${this.opacity})`
+                ? `rgba(196,30,42,${this.opacity})`
                 : `rgba(245,240,232,${this.opacity * 0.5})`;
             ctx.fill();
         }
@@ -127,7 +127,7 @@ function initCardFeedback() {
                 position:absolute;
                 width:${size}px; height:${size}px;
                 left:${x}px; top:${y}px;
-                background: rgba(201,168,76,0.12);
+                background: rgba(196,30,42,0.12);
                 border-radius:50%;
                 transform:scale(0);
                 animation:ripple 0.55s ease-out forwards;
