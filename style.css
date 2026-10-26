@@ -1,17 +1,43 @@
+/* ======================================================
+   JANATI BARBER VIP — PREMIUM DESIGN SYSTEM
+   Glassmorphism · Aurora Glow · Dynamic Animations
+   ====================================================== */
+
 :root {
     color-scheme: dark;
-    --ink: #171615;
-    --ink-soft: #211f1e;
-    --paper: #f1eee8;
-    --muted: #a9a39d;
-    --red: #d71920;
-    --line: rgba(255, 255, 255, 0.14);
+
+    /* ── Core Palette ── */
+    --ink: #0a0a0f;
+    --ink-soft: #12121a;
+    --ink-card: #16161f;
+    --paper: #f0ece4;
+    --muted: #8e8a84;
+    --red: #e2272e;
+    --red-hot: #ff3a42;
+    --red-glow: rgba(226, 39, 46, 0.45);
+    --gold: #c9a96e;
+    --gold-soft: rgba(201, 169, 110, 0.12);
+    --line: rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.035);
+    --glass-border: rgba(255, 255, 255, 0.09);
+
+    /* ── Typography ── */
     --sans: "DM Sans", sans-serif;
     --serif: "Playfair Display", Georgia, serif;
+
+    /* ── Animation ── */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration: 0.7s;
 }
 
-* {
+/* ── Reset ── */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -23,23 +49,84 @@ html {
 body {
     min-width: 320px;
     min-height: 100vh;
-    margin: 0;
     background: var(--ink);
     color: var(--paper);
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
+/* ======================================================
+   ANIMATED BACKGROUND — Floating Aurora + Grid
+   ====================================================== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(226, 39, 46, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(201, 169, 110, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(120, 80, 200, 0.04) 0%, transparent 50%);
+    animation: aurora-shift 12s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes aurora-shift {
+    0% {
+        filter: hue-rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        filter: hue-rotate(25deg);
+        opacity: 1;
+    }
+}
+
+/* ======================================================
+   LOADER — Premium Cinematic Entry
+   ====================================================== */
 .loader {
     position: fixed;
-    z-index: 10;
+    z-index: 100;
     inset: 0;
     display: grid;
     align-content: center;
     justify-items: center;
     gap: 24px;
     background: var(--ink);
-    animation: loader-exit 1.8s ease 0.15s forwards;
+    animation: loader-exit 2s var(--ease-out-expo) 1.6s forwards;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(226, 39, 46, 0.12) 0%, transparent 50%);
+    animation: loader-pulse 2s ease-in-out infinite;
+}
+
+@keyframes loader-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
 .loader-mark {
@@ -56,21 +143,22 @@ body {
     aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 0 40px rgba(226, 39, 46, 0.25);
 }
 
 .loader-ring {
     position: absolute;
     inset: 0;
-    border: 1px solid rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.08);
     border-top-color: var(--red);
+    border-right-color: var(--gold);
     border-radius: 50%;
-    animation: ring-turn 1.25s linear infinite;
+    animation: ring-turn 1s linear infinite;
 }
 
 .loader-name {
     display: grid;
     gap: 6px;
-    margin: 0;
     color: var(--paper);
     font-size: 0.78rem;
     font-weight: 700;
@@ -87,63 +175,70 @@ body {
 }
 
 .loader-progress {
-    width: 84px;
+    width: 100px;
     height: 2px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
 }
 
 .loader-progress span {
     display: block;
     width: 100%;
     height: 100%;
-    background: var(--red);
+    background: linear-gradient(90deg, var(--red), var(--gold));
     transform: scaleX(0);
     transform-origin: left;
-    animation: progress-run 1.35s 100ms ease-in-out forwards;
+    animation: progress-run 1.4s 100ms ease-in-out forwards;
 }
 
 @keyframes loader-exit {
-    0%, 74% {
+    0%, 60% {
         opacity: 1;
         visibility: visible;
+        backdrop-filter: blur(0px);
     }
-
     100% {
         opacity: 0;
         visibility: hidden;
+        backdrop-filter: blur(20px);
     }
 }
 
 @keyframes mark-arrive {
     from {
         opacity: 0;
-        transform: translateY(12px) scale(0.96);
+        transform: translateY(20px) scale(0.92);
+        filter: blur(6px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 
 @keyframes ring-turn {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes progress-run {
-    to {
-        transform: scaleX(1);
-    }
+    to { transform: scaleX(1); }
 }
 
+/* ======================================================
+   LINKS
+   ====================================================== */
 a {
     color: inherit;
 }
 
+/* ======================================================
+   PAGE WRAPPER
+   ====================================================== */
 .page {
+    position: relative;
+    z-index: 1;
     min-height: 100vh;
     padding: clamp(20px, 4vw, 58px);
     display: flex;
@@ -151,30 +246,94 @@ a {
     justify-content: center;
 }
 
+/* ======================================================
+   SHOWCASE — Main Card with Glassmorphism
+   ====================================================== */
 .showcase {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-    width: min(1320px, 100%);
-    min-height: min(760px, calc(100vh - 112px));
+    width: min(1340px, 100%);
+    min-height: min(780px, calc(100vh - 112px));
     margin: 0 auto;
-    background: var(--ink-soft);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--ink-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        0 40px 80px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* ── Animated border glow ── */
+    animation: card-reveal 1.2s var(--ease-out-expo) 1.8s both;
 }
 
+/* Animated gradient border accent */
+.showcase::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 21px;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        var(--red) 0%,
+        transparent 25%,
+        transparent 50%,
+        var(--gold) 75%,
+        transparent 100%
+    );
+    background-size: 300% 300%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-glow 6s linear infinite;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.7;
+}
+
+@keyframes border-glow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes card-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ======================================================
+   SHOWCASE — Copy Side
+   ====================================================== */
 .showcase-copy {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: clamp(30px, 5vw, 72px);
 }
 
+/* ── Brand ── */
 .brand {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2s both;
 }
 
 .brand-logo {
@@ -184,7 +343,19 @@ a {
     object-fit: cover;
     border-radius: 50%;
     background: #050505;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+    box-shadow:
+        0 18px 55px rgba(0, 0, 0, 0.4),
+        0 0 0 3px rgba(226, 39, 46, 0.15),
+        0 0 60px rgba(226, 39, 46, 0.1);
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.45),
+        0 0 0 4px rgba(226, 39, 46, 0.3),
+        0 0 80px rgba(226, 39, 46, 0.18);
 }
 
 .brand-label,
@@ -199,12 +370,34 @@ a {
 
 .brand-label {
     color: var(--muted);
+    position: relative;
+    padding-left: 18px;
 }
 
+.brand-label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    transform: translateY(-50%);
+    animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4); }
+    50% { opacity: 1; box-shadow: 0 0 0 6px rgba(201, 169, 110, 0); }
+}
+
+/* ── Intro ── */
 .intro {
     max-width: 500px;
     margin: auto 0;
     padding: 54px 0 48px;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.15s both;
 }
 
 .eyebrow {
@@ -212,13 +405,22 @@ a {
     align-items: center;
     gap: 10px;
     margin: 0 0 20px;
-    color: #d4cec6;
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
 }
 
 .eyebrow span {
-    width: 24px;
+    width: 32px;
     height: 2px;
-    background: var(--red);
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 2px;
+    animation: line-extend 1s var(--ease-out-expo) 2.3s both;
+}
+
+@keyframes line-extend {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
 }
 
 h1 {
@@ -228,11 +430,27 @@ h1 {
     font-weight: 500;
     letter-spacing: -0.075em;
     line-height: 0.99;
+    background: linear-gradient(135deg, var(--paper) 0%, #d4cec6 50%, var(--paper) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-text 4s ease-in-out infinite;
+}
+
+@keyframes shimmer-text {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 h1 em {
-    color: #e12a30;
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-hot) 50%, var(--gold) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 500;
+    animation: shimmer-text 4s ease-in-out infinite;
 }
 
 .intro-copy {
@@ -243,23 +461,38 @@ h1 em {
     line-height: 1.8;
 }
 
+/* ── Barber ── */
 .barber {
     display: flex;
     align-items: center;
     gap: 15px;
     margin: 0 0 27px;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.3s both;
 }
 
 .barber-rule {
     width: 2px;
     height: 34px;
-    background: var(--red);
+    background: linear-gradient(180deg, var(--red), var(--gold));
+    border-radius: 2px;
+    position: relative;
+}
+
+.barber-rule::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(6px);
+    opacity: 0.5;
 }
 
 .barber-name {
     margin: 0 0 4px;
     font-family: var(--serif);
-    font-size: 1.02rem;
+    font-size: 1.05rem;
+    color: var(--paper);
 }
 
 .barber-title {
@@ -268,54 +501,112 @@ h1 em {
     font-size: 0.6rem;
 }
 
+/* ======================================================
+   ACTION BUTTONS — Glassmorphism Cards
+   ====================================================== */
 .quick-links {
     display: grid;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     max-width: 440px;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.45s both;
 }
 
 .action {
+    position: relative;
     display: grid;
-    grid-template-columns: 42px minmax(0, 1fr) 18px;
+    grid-template-columns: 44px minmax(0, 1fr) 18px;
     align-items: center;
     gap: 14px;
-    min-height: 70px;
-    padding: 11px 16px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.025);
+    min-height: 72px;
+    padding: 12px 18px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     text-decoration: none;
-    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s var(--ease-out-expo),
+        box-shadow 0.35s ease;
+    overflow: hidden;
+}
+
+/* Hover shine sweep effect */
+.action::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+.action:hover::before {
+    left: 120%;
 }
 
 .action:hover,
 .action:focus-visible {
-    border-color: rgba(255, 255, 255, 0.32);
-    background: rgba(255, 255, 255, 0.075);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.action:hover {
-    transform: translateY(-2px);
-}
-
+/* ── Primary Action (WhatsApp) ── */
 .action-primary {
     border-color: var(--red);
-    background: var(--red);
+    background: linear-gradient(135deg, var(--red) 0%, #c41a20 100%);
+    box-shadow: 0 4px 20px rgba(226, 39, 46, 0.25);
+}
+
+.action-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.08) 100%);
+    pointer-events: none;
 }
 
 .action-primary:hover,
 .action-primary:focus-visible {
-    border-color: #ed3037;
-    background: #c4151c;
+    border-color: var(--red-hot);
+    background: linear-gradient(135deg, var(--red-hot) 0%, var(--red) 100%);
+    box-shadow:
+        0 8px 35px rgba(226, 39, 46, 0.4),
+        0 0 60px rgba(226, 39, 46, 0.15);
+    transform: translateY(-3px) scale(1.02);
 }
 
 .action-icon {
     display: grid;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     font-size: 1.15rem;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background-color 0.3s ease, transform 0.3s var(--ease-spring);
+}
+
+.action:hover .action-icon {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 
 .action > span:nth-child(2) {
@@ -329,15 +620,23 @@ h1 em {
 }
 
 .action small {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 0.72rem;
 }
 
 .action-arrow {
     justify-self: end;
     font-size: 0.7rem;
+    transition: transform 0.35s var(--ease-out-expo);
 }
 
+.action:hover .action-arrow {
+    transform: translate(3px, -3px);
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
 .showcase-footer {
     display: flex;
     flex-wrap: wrap;
@@ -349,6 +648,7 @@ h1 em {
     margin-top: 28px;
     padding-top: 19px;
     border-top: 1px solid var(--line);
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.6s both;
 }
 
 .location-link {
@@ -359,53 +659,90 @@ h1 em {
     font-size: 0.76rem;
     font-weight: 600;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.location-link:hover {
+    color: var(--gold);
 }
 
 .location-link > .fa-location-dot {
-    color: #ed3037;
+    color: var(--red-hot);
+    animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+@keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }
 
 .location-arrow {
     margin-left: 2px;
     color: var(--muted);
     font-size: 0.67rem;
-    transition: transform 180ms ease;
+    transition: transform 0.3s var(--ease-out-expo), color 0.3s ease;
 }
 
 .location-link:hover .location-arrow {
-    transform: translateX(3px);
+    transform: translateX(5px);
+    color: var(--gold);
 }
 
 .phone-link {
     color: var(--muted);
     font-size: 0.74rem;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .phone-link:hover {
     color: var(--paper);
 }
 
+/* ======================================================
+   SHOWCASE IMAGE — Parallax Depth Effect
+   ====================================================== */
 .showcase-image {
     position: relative;
     min-height: 100%;
     overflow: hidden;
-    background: #282522;
+    background: #1a1820;
+    border-radius: 0 19px 19px 0;
 }
 
 .showcase-image > img {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -8%;
+    width: 116%;
+    height: 116%;
     object-fit: cover;
     object-position: center 42%;
+    transition: transform 0.6s var(--ease-out-expo);
+    animation: img-zoom-settle 1.8s var(--ease-out-expo) 2s both;
+}
+
+.showcase-image:hover > img {
+    transform: scale(1.04);
+}
+
+@keyframes img-zoom-settle {
+    from {
+        transform: scale(1.12);
+        filter: blur(4px) brightness(0.6);
+    }
+    to {
+        transform: scale(1);
+        filter: blur(0) brightness(1);
+    }
 }
 
 .image-shade {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(14, 13, 13, 0.02) 42%, rgba(14, 13, 13, 0.72) 100%);
+    background:
+        linear-gradient(180deg, rgba(10, 10, 15, 0.15) 0%, rgba(10, 10, 15, 0) 30%, rgba(10, 10, 15, 0.75) 100%),
+        linear-gradient(90deg, rgba(10, 10, 15, 0.4) 0%, transparent 40%);
+    z-index: 1;
 }
 
 .image-caption {
@@ -416,13 +753,22 @@ h1 em {
     display: flex;
     align-items: flex-end;
     gap: 16px;
+    z-index: 2;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.5s both;
 }
 
 .caption-mark {
-    color: #f02b32;
+    color: var(--red-hot);
     font-family: var(--serif);
     font-size: 4.8rem;
     line-height: 0.8;
+    text-shadow: 0 0 30px rgba(226, 39, 46, 0.35);
+    animation: pulse-mark 3s ease-in-out infinite;
+}
+
+@keyframes pulse-mark {
+    0%, 100% { text-shadow: 0 0 30px rgba(226, 39, 46, 0.35); }
+    50% { text-shadow: 0 0 50px rgba(226, 39, 46, 0.55), 0 0 80px rgba(226, 39, 46, 0.2); }
 }
 
 .image-caption p {
@@ -430,22 +776,35 @@ h1 em {
     font-family: var(--serif);
     font-size: clamp(1.25rem, 2.3vw, 2rem);
     line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .image-index {
     position: absolute;
     top: 25px;
     right: 26px;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.62rem;
     letter-spacing: 0.15em;
+    z-index: 2;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ======================================================
+   PAGE NOTE — Bottom Bar
+   ====================================================== */
 .page-note {
-    width: min(1320px, 100%);
+    width: min(1340px, 100%);
     margin: 20px auto 0;
-    color: #716c66;
+    color: #504c47;
     font-size: 0.57rem;
+    letter-spacing: 0.15em;
+    animation: stagger-up 0.9s var(--ease-out-expo) 2.8s both;
 }
 
 .page-note span {
@@ -453,17 +812,63 @@ h1 em {
     color: var(--red);
 }
 
-:focus-visible {
-    outline: 2px solid #f04a4f;
-    outline-offset: 4px;
+/* ======================================================
+   STAGGER-UP ANIMATION
+   ====================================================== */
+@keyframes stagger-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
+/* ======================================================
+   FOCUS STATES
+   ====================================================== */
+:focus-visible {
+    outline: 2px solid var(--red-hot);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--ink);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ======================================================
+   RESPONSIVE — Large Screens
+   ====================================================== */
 @media (min-width: 1200px) {
     .showcase-copy {
         padding: 64px 72px;
     }
 }
 
+/* ======================================================
+   RESPONSIVE — Tablets
+   ====================================================== */
 @media (max-width: 900px) {
     .page {
         padding: 20px;
@@ -472,6 +877,11 @@ h1 em {
     .showcase {
         grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
         min-height: min(720px, calc(100vh - 80px));
+        border-radius: 16px;
+    }
+
+    .showcase::before {
+        border-radius: 17px;
     }
 
     .showcase-copy {
@@ -485,24 +895,37 @@ h1 em {
     h1 {
         font-size: clamp(3.2rem, 7vw, 4.7rem);
     }
+
+    .showcase-image {
+        border-radius: 0 15px 15px 0;
+    }
 }
 
+/* ======================================================
+   RESPONSIVE — Mobile
+   ====================================================== */
 @media (max-width: 680px) {
     .page {
         min-height: 100svh;
-        padding: 12px;
+        padding: 10px;
     }
 
     .showcase {
         display: flex;
         flex-direction: column;
         min-height: auto;
+        border-radius: 18px;
+    }
+
+    .showcase::before {
+        border-radius: 19px;
     }
 
     .showcase-image {
         min-height: 31svh;
         height: 31svh;
         max-height: 340px;
+        border-radius: 17px 17px 0 0;
     }
 
     .showcase-image > img {
@@ -555,6 +978,7 @@ h1 em {
 
     .action {
         min-height: 64px;
+        border-radius: 12px;
     }
 
     .showcase-footer {
@@ -566,6 +990,9 @@ h1 em {
     }
 }
 
+/* ======================================================
+   RESPONSIVE — Small Mobile
+   ====================================================== */
 @media (max-width: 360px) {
     .showcase-image {
         min-height: 28svh;
@@ -584,24 +1011,17 @@ h1 em {
     }
 }
 
+/* ======================================================
+   REDUCED MOTION — Accessibility
+   ====================================================== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-
-    .loader {
-        animation-duration: 0.01ms;
-        animation-delay: 0ms;
-    }
-
-    .loader-mark,
-    .loader-ring,
-    .loader-name,
-    .loader-progress span {
-        animation-duration: 0.01ms;
-        animation-iteration-count: 1;
+        scroll-behavior: auto !important;
     }
 }
